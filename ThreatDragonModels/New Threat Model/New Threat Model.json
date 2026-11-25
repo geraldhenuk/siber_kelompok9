@@ -1,17 +1,2536 @@
 {
   "version": "2.6.2",
-  "release_version": "",
-  "released_at": "",
   "summary": {
-    "title": "New Threat Model",
-    "owner": "",
-    "description": "",
+    "title": "STRIDE - Kasus C - Kelompok XX",
+    "owner": "Kelompok XX - Keamanan Siber (CAK3CAB3)",
+    "description": "DFD Kasus C: Sistem E-Ticket dan Validasi Tiket Acara. Aliran data bernomor kronologis 1-16: Tahap A registrasi dan penerbitan tiket (1-5), Tahap B check-in di pintu (6-11), Tahap C dashboard admin (12-16). Lingkup: registrasi dan penerbitan tiket, pemindaian, validasi, status check-in, dashboard admin. Di luar lingkup: pembayaran, pemasaran acara, pengiriman notifikasi.",
     "id": 0
   },
   "detail": {
     "contributors": [],
-    "diagrams": [],
-    "diagramTop": 0,
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD E-Ticket dan Validasi Tiket Acara",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 40,
+              "y": 45
+            },
+            "size": {
+              "width": 520,
+              "height": 270
+            },
+            "attrs": {
+              "label": {
+                "text": "TB1 Zona Publik (internet, perangkat peserta)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "9512d62f-6dc4-41ce-9c5a-2067b81f07e1",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "Area tidak dipercaya: peserta dan portal web yang dapat diakses publik.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "containedElements": [
+                "33fe19b9-c262-4f15-a2ed-cb07ff5adbcb",
+                "febeb5da-d3ce-4230-a630-a881220bb260"
+              ],
+              "crossingFlows": [
+                "1a8b1f73-deac-4283-bae6-04153a97fce1",
+                "1b1a833d-d12e-4a0b-ac6d-51a563301f4c",
+                "9e5e8b55-bd50-4eb2-82e8-9b6ae3d48a1d"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 375
+            },
+            "size": {
+              "width": 520,
+              "height": 235
+            },
+            "attrs": {
+              "label": {
+                "text": "TB2 Zona Pintu Masuk (perangkat petugas)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "26153b30-45f5-4438-bd89-c517c72db152",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "Perangkat lapangan petugas pintu; dapat hilang atau dipinjam.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "containedElements": [
+                "431eab2e-67c5-419c-800d-7a4b0772ffc5",
+                "c282a6d4-6c1a-4b6a-b604-9762682065e3"
+              ],
+              "crossingFlows": [
+                "9e5e8b55-bd50-4eb2-82e8-9b6ae3d48a1d",
+                "ccbe9ec4-156e-43a4-8193-0b7daa3a0073",
+                "44077e9b-514f-4b95-b28e-a6dca63c1c99"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 660
+            },
+            "size": {
+              "width": 520,
+              "height": 235
+            },
+            "attrs": {
+              "label": {
+                "text": "TB3 Zona Admin (dashboard web)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "91babdfe-40b2-47d3-86ae-9ec59faf7065",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "Area admin acara yang mengakses dashboard.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "containedElements": [
+                "cb42b7ee-9b39-4005-a078-c99c0eb28d6e",
+                "c16ea97e-4a9d-4c33-afe0-c170483d1988"
+              ],
+              "crossingFlows": [
+                "4d2c386e-ec25-4225-895e-c919e29ec0ee",
+                "520a8a1b-ad52-4e6f-8cb3-ff940af5e928"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 700,
+              "y": 45
+            },
+            "size": {
+              "width": 560,
+              "height": 850
+            },
+            "attrs": {
+              "label": {
+                "text": "TB4 Zona Layanan Internal (server penyelenggara)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "84aaec0f-e461-4d04-b275-2664b5b20f6a",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "Backend Tiket dan Database Tiket; semua keputusan otorisasi dan validasi dibuat di sini.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "containedElements": [
+                "a516dae0-d40b-4985-9199-cf0f87e01c50",
+                "2bb27d49-a10d-415d-a7a5-c2868b07acf1"
+              ],
+              "crossingFlows": [
+                "1a8b1f73-deac-4283-bae6-04153a97fce1",
+                "1b1a833d-d12e-4a0b-ac6d-51a563301f4c",
+                "ccbe9ec4-156e-43a4-8193-0b7daa3a0073",
+                "44077e9b-514f-4b95-b28e-a6dca63c1c99",
+                "4d2c386e-ec25-4225-895e-c919e29ec0ee",
+                "520a8a1b-ad52-4e6f-8cb3-ff940af5e928"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 70,
+              "y": 135
+            },
+            "size": {
+              "width": 130,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Peserta"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "b2a92f38-594c-478f-985e-8b783020efbb"
+                },
+                {
+                  "group": "right",
+                  "id": "32f0c3a7-7d15-4da6-b109-457c60bbf08d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "21857d92-f59d-4365-8559-8aabc59c586e"
+                },
+                {
+                  "group": "left",
+                  "id": "e5396e44-3dda-4f80-9b2a-39d7c85deb74"
+                }
+              ]
+            },
+            "id": "33fe19b9-c262-4f15-a2ed-cb07ff5adbcb",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Peserta",
+              "description": "Pengguna publik: registrasi di portal, menyimpan tiket, menunjukkan QR di pintu.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 70,
+              "y": 440
+            },
+            "size": {
+              "width": 130,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Petugas Pintu"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "c25d4a9e-90c0-4506-a68f-1f020822171b"
+                },
+                {
+                  "group": "right",
+                  "id": "1b751968-db0a-4d5d-957d-a1f248d071e1"
+                },
+                {
+                  "group": "bottom",
+                  "id": "c8038951-f22b-49c5-8277-8711da34f4a3"
+                },
+                {
+                  "group": "left",
+                  "id": "30d9d778-00da-4a5f-b414-5843ebd834c1"
+                }
+              ]
+            },
+            "id": "431eab2e-67c5-419c-800d-7a4b0772ffc5",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Petugas Pintu",
+              "description": "Login pada Aplikasi Pemindai dan memindai QR tiket di pintu masuk.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 70,
+              "y": 740
+            },
+            "size": {
+              "width": 130,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Admin Acara"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "6e1e9a75-9a81-48eb-8acf-c8a3aeda28f7"
+                },
+                {
+                  "group": "right",
+                  "id": "5b8f3a5f-288a-47ac-9e8a-60e058280a6b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "b7d741c4-f65e-4ea7-8a08-020954f31c86"
+                },
+                {
+                  "group": "left",
+                  "id": "2b67a875-aed8-40be-a721-1aad3941580e"
+                }
+              ]
+            },
+            "id": "cb42b7ee-9b39-4005-a078-c99c0eb28d6e",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Admin Acara",
+              "description": "Melihat jumlah check-in dan daftar status tiket melalui dashboard web.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 370,
+              "y": 115
+            },
+            "size": {
+              "width": 130,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Portal Web\n Publik"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "6c8a70de-5836-490d-9376-f630304dce3c"
+                },
+                {
+                  "group": "right",
+                  "id": "d63b4a97-48cb-4b34-ab21-b08b1d7e2e27"
+                },
+                {
+                  "group": "bottom",
+                  "id": "d231c3f5-a2b4-4498-a915-29efd1b53b52"
+                },
+                {
+                  "group": "left",
+                  "id": "c0c5fc3a-45d9-4b4d-8fed-f0babda4f8c6"
+                }
+              ]
+            },
+            "id": "febeb5da-d3ce-4230-a630-a881220bb260",
+            "data": {
+              "type": "tm.Process",
+              "name": "Portal Web\n Publik",
+              "description": "Formulir registrasi dan tampilan tiket ber-QR untuk peserta.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 370,
+              "y": 420
+            },
+            "size": {
+              "width": 130,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Aplikasi \nPemindai"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "c605bab6-9609-4848-bfc6-c5043a167bae"
+                },
+                {
+                  "group": "right",
+                  "id": "6822be74-f593-490b-968e-d51e0be4e4a6"
+                },
+                {
+                  "group": "bottom",
+                  "id": "b12eab3c-f321-41b6-937b-eae6a9c9c570"
+                },
+                {
+                  "group": "left",
+                  "id": "647ff053-8bbf-4f38-bf9d-02729b4061b3"
+                }
+              ]
+            },
+            "id": "c282a6d4-6c1a-4b6a-b604-9762682065e3",
+            "data": {
+              "type": "tm.Process",
+              "name": "Aplikasi \nPemindai",
+              "description": "Aplikasi petugas: login, memindai QR, mengirim permintaan validasi, menampilkan hasil. Wajib online.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 370,
+              "y": 720
+            },
+            "size": {
+              "width": 130,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Dashboard \nAdmin Web"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "c3bb2188-2008-410e-ae7b-09344277b585"
+                },
+                {
+                  "group": "right",
+                  "id": "87afe13e-ed26-49ec-af3f-69f97136822c"
+                },
+                {
+                  "group": "bottom",
+                  "id": "a96bb67f-b4be-4eaf-8d75-ba780d0c82fb"
+                },
+                {
+                  "group": "left",
+                  "id": "dc50c4fd-54e7-4d65-9f1e-c4d058353b66"
+                }
+              ]
+            },
+            "id": "c16ea97e-4a9d-4c33-afe0-c170483d1988",
+            "data": {
+              "type": "tm.Process",
+              "name": "Dashboard \nAdmin Web",
+              "description": "Antarmuka web admin untuk melihat ringkasan check-in dan daftar status tiket.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 780,
+              "y": 400
+            },
+            "size": {
+              "width": 150,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Backend Tiket"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "9cd6494a-7abf-48db-981c-1b4854844baf"
+                },
+                {
+                  "group": "right",
+                  "id": "0223063c-82e2-4451-aceb-e644c3458d02"
+                },
+                {
+                  "group": "bottom",
+                  "id": "95230b4b-204b-43d5-af89-d16d832fa593"
+                },
+                {
+                  "group": "left",
+                  "id": "7eb31584-93ec-49ff-a626-b5769773b7f3"
+                }
+              ]
+            },
+            "id": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+            "data": {
+              "type": "tm.Process",
+              "name": "Backend Tiket",
+              "description": "Mengonfirmasi registrasi, menerbitkan tiket ber-QR, memvalidasi tiket dan sesi petugas, memperbarui status check-in, menyusun ringkasan.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1100,
+              "y": 440
+            },
+            "size": {
+              "width": 140,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Database Tiket"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "9b9dad29-8111-40fe-aa6f-c7b0c3567567"
+                },
+                {
+                  "group": "right",
+                  "id": "8d02d673-e665-4181-9614-ead6a3c0ea89"
+                },
+                {
+                  "group": "bottom",
+                  "id": "3bdb6f39-a809-4bd0-918d-3f56f2ebdadd"
+                },
+                {
+                  "group": "left",
+                  "id": "59bfa85a-28b5-406c-b506-3f2894a68e2e"
+                }
+              ]
+            },
+            "id": "2bb27d49-a10d-415d-a7a5-c2868b07acf1",
+            "data": {
+              "type": "tm.Store",
+              "name": "Database Tiket",
+              "description": "Menyimpan registrasi peserta, tiket, dan status check-in.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "1. Data registrasi\n(nama, email, acara)",
+              "description": "Langkah 1 (Tahap A). Peserta mengisi dan mengirim formulir registrasi. Asumsi A1: HTTPS.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "1. Data registrasi\n(nama, email, acara)",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "35138f93-66a9-46d4-8e49-04550985ce9b",
+            "source": {
+              "cell": "33fe19b9-c262-4f15-a2ed-cb07ff5adbcb",
+              "port": "32f0c3a7-7d15-4da6-b109-457c60bbf08d"
+            },
+            "target": {
+              "cell": "febeb5da-d3ce-4230-a630-a881220bb260",
+              "port": "c0c5fc3a-45d9-4b4d-8fed-f0babda4f8c6"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "2. Permintaan\nregistrasi",
+              "description": "Langkah 2 (Tahap A). Portal meneruskan permintaan registrasi ke Backend. Melintasi TB1 ke TB4.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "9512d62f-6dc4-41ce-9c5a-2067b81f07e1",
+                "84aaec0f-e461-4d04-b275-2664b5b20f6a"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "2. Permintaan\nregistrasi",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "1a8b1f73-deac-4283-bae6-04153a97fce1",
+            "source": {
+              "cell": "febeb5da-d3ce-4230-a630-a881220bb260",
+              "port": "d63b4a97-48cb-4b34-ab21-b08b1d7e2e27"
+            },
+            "target": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "9cd6494a-7abf-48db-981c-1b4854844baf"
+            },
+            "vertices": [
+              {
+                "x": 840,
+                "y": 165
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "3. Simpan registrasi\n& tiket baru",
+              "description": "Langkah 3 (Tahap A). Setelah registrasi dikonfirmasi, Backend menerbitkan tiket (ID/QR unik) dan menyimpannya di Database Tiket.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "3. Simpan registrasi\n& tiket baru",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "b52f3ca8-8ad7-4741-82c7-b12cb16f65c5",
+            "source": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "0223063c-82e2-4451-aceb-e644c3458d02"
+            },
+            "target": {
+              "cell": "2bb27d49-a10d-415d-a7a5-c2868b07acf1",
+              "port": "9b9dad29-8111-40fe-aa6f-c7b0c3567567"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 380
+              },
+              {
+                "x": 1170,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "4. Konfirmasi &\ndata tiket (ID, QR)",
+              "description": "Langkah 4 (Tahap A). Backend mengembalikan konfirmasi registrasi dan data tiket. Melintasi TB4 ke TB1.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "9512d62f-6dc4-41ce-9c5a-2067b81f07e1",
+                "84aaec0f-e461-4d04-b275-2664b5b20f6a"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "4. Konfirmasi &\ndata tiket (ID, QR)",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "1b1a833d-d12e-4a0b-ac6d-51a563301f4c",
+            "source": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "9cd6494a-7abf-48db-981c-1b4854844baf"
+            },
+            "target": {
+              "cell": "febeb5da-d3ce-4230-a630-a881220bb260",
+              "port": "d231c3f5-a2b4-4498-a915-29efd1b53b52"
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": 275
+              },
+              {
+                "x": 435,
+                "y": 275
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "5. Tiket ber-QR\nuntuk peserta",
+              "description": "Langkah 5 (Tahap A). Portal menampilkan tiket ber-QR kepada peserta, yang dapat disimpan di ponsel.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "5. Tiket ber-QR\nuntuk peserta",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "7ff3ac76-6858-4d9c-b231-ed4823ebff49",
+            "source": {
+              "cell": "febeb5da-d3ce-4230-a630-a881220bb260",
+              "port": "6c8a70de-5836-490d-9376-f630304dce3c"
+            },
+            "target": {
+              "cell": "33fe19b9-c262-4f15-a2ed-cb07ff5adbcb",
+              "port": "b2a92f38-594c-478f-985e-8b783020efbb"
+            },
+            "vertices": [
+              {
+                "x": 435,
+                "y": 95
+              },
+              {
+                "x": 135,
+                "y": 95
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "6. Kredensial login\npetugas",
+              "description": "Langkah 6 (Tahap B). Petugas pintu login pada Aplikasi Pemindai.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "6. Kredensial login\npetugas",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "89e90867-9ad3-4495-9c90-a390d0a175c5",
+            "source": {
+              "cell": "431eab2e-67c5-419c-800d-7a4b0772ffc5",
+              "port": "1b751968-db0a-4d5d-957d-a1f248d071e1"
+            },
+            "target": {
+              "cell": "c282a6d4-6c1a-4b6a-b604-9762682065e3",
+              "port": "647ff053-8bbf-4f38-bf9d-02729b4061b3"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "7. QR tiket\n(ditunjukkan di pintu)",
+              "description": "Langkah 7 (Tahap B). Peserta menunjukkan QR tiket (ID tiket) kepada Aplikasi Pemindai. Melintasi TB1 ke TB2. Isi QR tidak dipercaya.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "9512d62f-6dc4-41ce-9c5a-2067b81f07e1",
+                "26153b30-45f5-4438-bd89-c517c72db152"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "7. QR tiket\n(ditunjukkan di pintu)",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "9e5e8b55-bd50-4eb2-82e8-9b6ae3d48a1d",
+            "source": {
+              "cell": "33fe19b9-c262-4f15-a2ed-cb07ff5adbcb",
+              "port": "21857d92-f59d-4365-8559-8aabc59c586e"
+            },
+            "target": {
+              "cell": "c282a6d4-6c1a-4b6a-b604-9762682065e3",
+              "port": "c605bab6-9609-4848-bfc6-c5043a167bae"
+            },
+            "vertices": [
+              {
+                "x": 135,
+                "y": 345
+              },
+              {
+                "x": 435,
+                "y": 345
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "8. ID tiket +\ntoken sesi petugas",
+              "description": "Langkah 8 (Tahap B). Aplikasi mengirim identitas tiket dan identitas sesi petugas (termasuk proses login) ke Backend. Melintasi TB2 ke TB4.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "26153b30-45f5-4438-bd89-c517c72db152",
+                "84aaec0f-e461-4d04-b275-2664b5b20f6a"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "8. ID tiket +\ntoken sesi petugas",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "ccbe9ec4-156e-43a4-8193-0b7daa3a0073",
+            "source": {
+              "cell": "c282a6d4-6c1a-4b6a-b604-9762682065e3",
+              "port": "6822be74-f593-490b-968e-d51e0be4e4a6"
+            },
+            "target": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "7eb31584-93ec-49ff-a626-b5769773b7f3"
+            },
+            "vertices": [
+              {
+                "x": 640,
+                "y": 430
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "9. Cek status &\nupdate check-in ↔\ndata status tiket",
+              "description": "Langkah 9 (Tahap B). Dua arah: Backend memeriksa kecocokan acara dan status tiket (query), Database mengembalikan data tiket dan status, lalu Backend memperbarui status menjadi telah check-in.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "9. Cek status &\nupdate check-in ↔\ndata status tiket",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "d2e31b42-2790-4e10-942f-8b113d95be75",
+            "source": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "0223063c-82e2-4451-aceb-e644c3458d02"
+            },
+            "target": {
+              "cell": "2bb27d49-a10d-415d-a7a5-c2868b07acf1",
+              "port": "59bfa85a-28b5-406c-b506-3f2894a68e2e"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "10. Hasil validasi\n(valid/ditolak/\nsudah check-in)",
+              "description": "Langkah 10 (Tahap B). Backend mengembalikan hasil validasi ke Aplikasi Pemindai. Melintasi TB4 ke TB2.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "26153b30-45f5-4438-bd89-c517c72db152",
+                "84aaec0f-e461-4d04-b275-2664b5b20f6a"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "10. Hasil validasi\n(valid/ditolak/\nsudah check-in)",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "44077e9b-514f-4b95-b28e-a6dca63c1c99",
+            "source": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "7eb31584-93ec-49ff-a626-b5769773b7f3"
+            },
+            "target": {
+              "cell": "c282a6d4-6c1a-4b6a-b604-9762682065e3",
+              "port": "6822be74-f593-490b-968e-d51e0be4e4a6"
+            },
+            "vertices": [
+              {
+                "x": 640,
+                "y": 510
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "11. Hasil validasi\nke petugas",
+              "description": "Langkah 11 (Tahap B). Aplikasi menampilkan hasil validasi kepada petugas pintu.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "11. Hasil validasi\nke petugas",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "55352c54-27cc-4102-a390-16cc3d283df5",
+            "source": {
+              "cell": "c282a6d4-6c1a-4b6a-b604-9762682065e3",
+              "port": "b12eab3c-f321-41b6-937b-eae6a9c9c570"
+            },
+            "target": {
+              "cell": "431eab2e-67c5-419c-800d-7a4b0772ffc5",
+              "port": "c8038951-f22b-49c5-8277-8711da34f4a3"
+            },
+            "vertices": [
+              {
+                "x": 435,
+                "y": 565
+              },
+              {
+                "x": 135,
+                "y": 565
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "12. Kredensial admin &\npermintaan data",
+              "description": "Langkah 12 (Tahap C). Admin login dan meminta jumlah check-in serta daftar status tiket.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "12. Kredensial admin &\npermintaan data",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "74ebc246-7b0b-43a1-9f1f-a99ba5babeb0",
+            "source": {
+              "cell": "cb42b7ee-9b39-4005-a078-c99c0eb28d6e",
+              "port": "5b8f3a5f-288a-47ac-9e8a-60e058280a6b"
+            },
+            "target": {
+              "cell": "c16ea97e-4a9d-4c33-afe0-c170483d1988",
+              "port": "dc50c4fd-54e7-4d65-9f1e-c4d058353b66"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "13. Permintaan ringkasan\n+ token sesi admin",
+              "description": "Langkah 13 (Tahap C). Dashboard meminta ringkasan kehadiran dan daftar status ke Backend. Melintasi TB3 ke TB4.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "91babdfe-40b2-47d3-86ae-9ec59faf7065",
+                "84aaec0f-e461-4d04-b275-2664b5b20f6a"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "13. Permintaan ringkasan\n+ token sesi admin",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "4d2c386e-ec25-4225-895e-c919e29ec0ee",
+            "source": {
+              "cell": "c16ea97e-4a9d-4c33-afe0-c170483d1988",
+              "port": "87afe13e-ed26-49ec-af3f-69f97136822c"
+            },
+            "target": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "95230b4b-204b-43d5-af89-d16d832fa593"
+            },
+            "vertices": [
+              {
+                "x": 840,
+                "y": 770
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "14. Query ringkasan ↔\ndata kehadiran",
+              "description": "Langkah 14 (Tahap C). Dua arah: Backend membaca status tiket dari Database untuk menyusun ringkasan, Database mengembalikan datanya.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "14. Query ringkasan ↔\ndata kehadiran",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "697c6f16-395c-4329-85ff-1faf86210abe",
+            "source": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "0223063c-82e2-4451-aceb-e644c3458d02"
+            },
+            "target": {
+              "cell": "2bb27d49-a10d-415d-a7a5-c2868b07acf1",
+              "port": "3bdb6f39-a809-4bd0-918d-3f56f2ebdadd"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 560
+              },
+              {
+                "x": 1170,
+                "y": 560
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "15. Ringkasan kehadiran\n& daftar status",
+              "description": "Langkah 15 (Tahap C). Backend mengembalikan ringkasan kehadiran dan daftar status tiket. Melintasi TB4 ke TB3.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "91babdfe-40b2-47d3-86ae-9ec59faf7065",
+                "84aaec0f-e461-4d04-b275-2664b5b20f6a"
+              ]
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "15. Ringkasan kehadiran\n& daftar status",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "520a8a1b-ad52-4e6f-8cb3-ff940af5e928",
+            "source": {
+              "cell": "a516dae0-d40b-4985-9199-cf0f87e01c50",
+              "port": "95230b4b-204b-43d5-af89-d16d832fa593"
+            },
+            "target": {
+              "cell": "c16ea97e-4a9d-4c33-afe0-c170483d1988",
+              "port": "c3bb2188-2008-410e-ae7b-09344277b585"
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": 635
+              },
+              {
+                "x": 435,
+                "y": 635
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "16. Jumlah check-in &\ndaftar status tiket",
+              "description": "Langkah 16 (Tahap C). Dashboard menampilkan jumlah check-in dan daftar status tiket kepada admin.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "label": {
+                    "text": "Data Flow"
+                  },
+                  "labelText": {
+                    "text": "16. Jumlah check-in &\ndaftar status tiket",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "id": "21b64551-967f-4a97-9bae-420b9b145132",
+            "source": {
+              "cell": "c16ea97e-4a9d-4c33-afe0-c170483d1988",
+              "port": "a96bb67f-b4be-4eaf-8d75-ba780d0c82fb"
+            },
+            "target": {
+              "cell": "cb42b7ee-9b39-4005-a078-c99c0eb28d6e",
+              "port": "b7d741c4-f65e-4ea7-8a08-020954f31c86"
+            },
+            "vertices": [
+              {
+                "x": 435,
+                "y": 855
+              },
+              {
+                "x": 135,
+                "y": 855
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
     "reviewer": "",
     "threatTop": 0
   }
